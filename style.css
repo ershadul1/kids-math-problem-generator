@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+.question-text {
+  font-size: 3rem;
+  color: rgb(60, 193, 255);
+}
+
+.result-node {
+  font-size: 1.5rem;
+}
+
+.correct-ans {
+  color: greenyellow;
+}
+
+.wrong-ans {
+  color: red;
+}
