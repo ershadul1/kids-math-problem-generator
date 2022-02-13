@@ -49,6 +49,9 @@ const checkAnswer = () => {
     resultText = document.createTextNode("Correct Answer! 🎉");
     resultNode.classList = "result-node text-center";
     resultNode.classList.add("correct-ans");
+
+    const nextQuestionBtn = document.getElementById("next-question-btn");
+    nextQuestionBtn.focus();
   } else {
     resultText = document.createTextNode("Sorry, Wrong Answer! Please Try Again");
     resultNode.classList = "result-node text-center";
@@ -56,6 +59,28 @@ const checkAnswer = () => {
   }
   
   resultNode.appendChild(resultText);
+}
+
+const goToTheNextQuestion = () => {
+  const questionNode = document.getElementById("question");
+
+  while (questionNode.firstChild) {
+    questionNode.removeChild(questionNode.firstChild);
+  }
+
+  const textNode = document.createTextNode(generateRandomMathProblem());
+  questionNode.appendChild(textNode);
+
+  const inputNode = document.getElementById('user-input');
+  inputNode.value = "";
+
+  const resultNode = document.getElementById("result-node");
+
+  while (resultNode.firstChild) {
+    resultNode.removeChild(resultNode.firstChild);
+  }
+
+  inputNode.focus();
 }
  
 content = document.getElementById("content");
@@ -79,6 +104,7 @@ inputNode.classList.add("form-control");
 inputNode.setAttribute("id", "user-input");
 inputNode.setAttribute("type", "text");
 inputNode.setAttribute("placeholder", "Write your answer here");
+inputNode.setAttribute("autocomplete", "off");
 inputNode.setAttribute("required", "");
 inputBox.appendChild(inputNode);
 
@@ -135,10 +161,11 @@ content.appendChild(revealCorrectAnswerBtn);
 const nextBtn = document.createElement("button");
 nextBtn.classList.add("btn", "btn-primary", "mt-5", "btn-lg");
 nextBtn.setAttribute("type", "button");
+nextBtn.setAttribute("id", "next-question-btn");
 const nextBtnText = document.createTextNode("Next question");
 nextBtn.appendChild(nextBtnText);
 
-nextBtn.addEventListener("click", () => location.reload());
+nextBtn.addEventListener("click", () => goToTheNextQuestion());
 
 content.appendChild(nextBtn);
 
